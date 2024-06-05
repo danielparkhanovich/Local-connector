@@ -37,21 +37,15 @@ dependencies {
     implementation(libs.edc.data.plane.public.api)
     implementation(libs.edc.data.plane.core)
     implementation(libs.edc.data.plane.http)
+ 
+    // provides health checks
+    implementation(libs.edc.api.observability)
 
-    // implementation(libs.edc.api.observability)
-
-    //extension to make assests, policies etc. persistent. 
+    // extension to make assests, policies etc. persistent. 
     // api(project(":extensions:postgres-flyway"))
     
-    // extention for enhancing data dashboard locally
+    // extension for enhancing data dashboard locally
     // api(project(":extensions:data-dashboard-local"))
-
-    // DAPS - we have no DAPS now
-    // implementation(libs.edc.oauth2)
-
-    // Data Management API IAM - not needed for demo
-    // implementation(libs.edc.auth.tokenbased)
-
 }
 
 application {
