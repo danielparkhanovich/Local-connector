@@ -1,24 +1,26 @@
-# Build
-`./gradlew clean build`
+# Demo connector
 
-# How to run
-`docker compose up --build`
+Based on
+- https://github.com/jhalasinski/connector-local.git
+- https://github.com/eclipse-edc/Samples/tree/main/transfer
 
-# Info
-Provider in order to run need: 
-- `Dedc.keystore` (cert.pfx), 
-- `Dedc.keystore.password`, 
-- `Dedc.vault` (...-vault.properties), 
-- `Dedc.fs.config` (...configuration.properties)
-- `jar` -> .../connector.jar
-Consumer need (same):
-- `Dedc.keystore`
-- `Dedc.keystore.password`
-- `Dedc.vault`
-- `Dedc.fs.config`
-- `jar`
+## Changes
+- Project updated to EDC v. 0.7.0
+- Jupyter notebook updated accordingly to interact with EDC v. 0.7.0
+- Removed postgres-flyway Extension (incompatible with EDC starting from EDC v. 0.5.0)
+- Removed data-dashboard-local Extension (incompatible with EDC v.0.7.0 starting from EDC v. 0.?.?)
 
-# Links:
-Repo with deployed v.0.3.1 connectors: https://gitlab.pcss.pl/dpi-pipelines/edc-connector/edc-connector
-Jan local deployment v.0.3.1: https://github.com/jhalasinski/connector-local
-EDC repo: https://github.com/eclipse-edc/Connector
+## Build
+1. `cd ./src`
+2. `./gradlew clean build`
+
+## How to run
+1. `cd ./compose`
+2. `docker compose up --build`
+
+## Next steps
+- Add extension for persistence 
+    - first option is to modify Sovity Extension: adjust extension and replace db migrations with migrations from https://github.com/eclipse-tractusx/tractusx-edc/tree/main/edc-extensions/migrations/control-plane-migration (not the best option due to the added difficulty of  maintaining the custom extension)
+    - second option is to adopt TractusX extensions for persistence using setup 2: https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs (more preferable)
+- Add extension for dashboard (not investigated yet)
+- Same as declared in https://github.com/jhalasinski/connector-local/tree/main/src
