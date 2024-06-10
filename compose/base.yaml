@@ -4,11 +4,11 @@ services:
   provider-connector:
     image: local-connector
     build:
-      context: ../src/launchers/default
+      context: ../src/launcher
       args:
         JAR: build/libs/connector.jar
       dockerfile: Dockerfile
-      
+
     environment:
       EDC_FS_CONFIG: /app/configuration.properties
       EDC_API_ASSET_COLLECTOR_FILE: /app/api_collection.json
@@ -22,20 +22,20 @@ services:
       - '19291:19291'
     
     volumes:
-      - ../src/launchers/default/config/configuration-provider.properties:/app/configuration.properties:ro
-      - ../src/launchers/default/config/keystore.pfx:/app/keystore.pfx:ro
-      - ../src/launchers/default/config/fs-provider.vault:/app/fs.vault
-      - ../src/launchers/default/config/api_collection.json:/app/api_collection.json
-      - ../src/launchers/default/config/json_example.json:/app/json_example.json
+      - ../src/launcher/config/configuration-provider.properties:/app/configuration.properties:ro
+      - ../src/launcher/config/keystore.pfx:/app/keystore.pfx:ro
+      - ../src/launcher/config/fs-provider.vault:/app/fs.vault
+      - ../src/launcher/config/api_collection.json:/app/api_collection.json
+      - ../src/launcher/config/json_example.json:/app/json_example.json
 
   consumer-connector:
     image: local-connector
     build:
-      context: ../src/launchers/default
+      context: ../src/launcher
       args:
         JAR: build/libs/connector.jar
       dockerfile: Dockerfile
-      
+
     environment:
       EDC_FS_CONFIG: /app/configuration.properties
       EDC_API_AUTH_KEY: "fifi-info-zaneta"
@@ -48,7 +48,6 @@ services:
       - '29291:29291'
     
     volumes:
-      - ../src/launchers/default/config/configuration-consumer.properties:/app/configuration.properties:ro
-      - ../src/launchers/default/config/keystore.pfx:/app/keystore.pfx:ro
-      - ../src/launchers/default/config/fs-consumer.vault:/app/fs.vault
-
+      - ../src/launcher/config/configuration-consumer.properties:/app/configuration.properties:ro
+      - ../src/launcher/config/keystore.pfx:/app/keystore.pfx:ro
+      - ../src/launcher/config/fs-consumer.vault:/app/fs.vault

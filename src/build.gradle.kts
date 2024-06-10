@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2022 Microsoft Corporation
+ *  Copyright (c) 2022 Fraunhofer Institute for Software and Systems Engineering
  *
  *  This program and the accompanying materials are made available under the
  *  terms of the Apache License, Version 2.0 which is available at
@@ -8,7 +8,7 @@
  *  SPDX-License-Identifier: Apache-2.0
  *
  *  Contributors:
- *       Microsoft Corporation - initial API and implementation
+ *       Fraunhofer Institute for Software and Systems Engineering - initial API and implementation
  *
  */
 
@@ -17,40 +17,29 @@ plugins {
     `java-library`
 }
 
-val javaVersion: String by project
-val edcScmUrl: String by project
-val edcScmConnection: String by project
-val annotationProcessorVersion: String by project
+repositories {
+    mavenCentral()
+}
 
 buildscript {
     dependencies {
-	classpath(libs.edc.build.plugin)
-        val edcGradlePluginsVersion: String by project
-        classpath("org.eclipse.edc.edc-build:org.eclipse.edc.edc-build.gradle.plugin:${edcGradlePluginsVersion}")
+        classpath(libs.edc.build.plugin)
     }
 }
 
+val edcVersion = libs.versions.edc
+
 allprojects {
-    apply(plugin = "${group}.edc-build")
+    apply(plugin = "$group.edc-build")
 
     // configure which version of the annotation processor to use. defaults to the same version as the plugin
     configure<org.eclipse.edc.plugins.autodoc.AutodocExtension> {
-        processorVersion.set(annotationProcessorVersion)
-        outputDirectory.set(project.layout.buildDirectory.asFile)
+        processorVersion.set(edcVersion)
+        outputDirectory.set(project.layout.buildDirectory.asFile.get())
     }
 
     configure<org.eclipse.edc.plugins.edcbuild.extensions.BuildExtension> {
-        pom {
-            scmUrl.set(edcScmUrl)
-            scmConnection.set(edcScmConnection)
-        }
-        swagger {
-            title.set((project.findProperty("apiTitle") ?: "EDC REST API") as String)
-            description =
-                (project.findProperty("apiDescription") ?: "EDC REST APIs - merged by OpenApiMerger") as String
-            outputFilename.set(project.name)
-            outputDirectory.set(file("${rootProject.projectDir.path}/resources/openapi/yaml"))
-        }
+        publish.set(false)
     }
 
     configure<CheckstyleExtension> {
@@ -58,5 +47,10 @@ allprojects {
         configDirectory.set(rootProject.file("resources"))
     }
 
+    tasks.test {
+        testLogging {
+            showStandardStreams = true
+        }
+    }
 
 }
