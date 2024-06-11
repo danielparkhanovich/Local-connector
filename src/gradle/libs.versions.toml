@@ -19,6 +19,7 @@ sovityext = "4.2.0"
 postgres = "42.4.0"
 flyway = "9.0.1"
 lombok = "1.18.28"
+tractus = "0.7.2"
 
 [libraries]
 edc-auth-tokenbased = { module = "org.eclipse.edc:auth-tokenbased", version.ref = "edc" }
@@ -76,7 +77,6 @@ edc-vault-filesystem = { module = "org.eclipse.edc:vault-filesystem", version.re
 
 edc-api-observability = { module = "org.eclipse.edc:api-observability", version.ref = "edc" }
 
-
 edc-core-spi = { module = "org.eclipse.edc:core-spi", version.ref = "edc"}
 edc-sql-core = { module = "org.eclipse.edc:sql-core", version.ref = "edc"}
 
@@ -95,6 +95,8 @@ sovity-pgflyway = { module = "de.sovity.edc.ext:postgres-flyway", version.ref = 
 jakarta-rsApi = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "rsApi" }
 jetty-jakarta-servlet-api = { module = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api", version.ref = "jetty-jakarta-servlet-api" }
 
+tractus-postgresql-data-plane-migration = { module = "org.eclipse.tractusx.edc:data-plane-migration", version.ref = "tractus" }
+tractus-postgresql-control-plane-migration = { module = "org.eclipse.tractusx.edc:control-plane-migration", version.ref = "tractus" }
 
 [plugins]
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }

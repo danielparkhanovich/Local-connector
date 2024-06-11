@@ -8,7 +8,9 @@ services:
       args:
         JAR: build/libs/connector.jar
       dockerfile: Dockerfile
-
+      
+    depends_on:
+      - postgresql-provider
     environment:
       EDC_FS_CONFIG: /app/configuration.properties
       EDC_API_ASSET_COLLECTOR_FILE: /app/api_collection.json
@@ -35,7 +37,9 @@ services:
       args:
         JAR: build/libs/connector.jar
       dockerfile: Dockerfile
-
+      
+    depends_on:
+      - postgresql-consumer
     environment:
       EDC_FS_CONFIG: /app/configuration.properties
       EDC_API_AUTH_KEY: "fifi-info-zaneta"
@@ -51,3 +55,33 @@ services:
       - ../src/launcher/config/configuration-consumer.properties:/app/configuration.properties:ro
       - ../src/launcher/config/keystore.pfx:/app/keystore.pfx:ro
       - ../src/launcher/config/fs-consumer.vault:/app/fs.vault
+
+  postgresql-provider:
+    image: docker.io/bitnami/postgresql:11
+    restart: always
+    environment:
+      POSTGRESQL_USERNAME: edc
+      POSTGRESQL_PASSWORD: edc
+      POSTGRESQL_DATABASE: edc
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql-provider:/bitnami/postgresql'
+
+  postgresql-consumer:
+    image: docker.io/bitnami/postgresql:11
+    restart: always
+    environment:
+      POSTGRESQL_USERNAME: edc
+      POSTGRESQL_PASSWORD: edc
+      POSTGRESQL_DATABASE: edc
+    ports:
+      - '5433:5432'
+    volumes:
+      - 'postgresql-consumer:/bitnami/postgresql'
+
+volumes:
+  postgresql-provider:
+    driver: local
+  postgresql-consumer:
+    driver: local
