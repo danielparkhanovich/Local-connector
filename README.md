@@ -19,8 +19,5 @@ Based on
 2. `docker compose up --build`
 
 ## Next steps
-- Add extension for persistence 
-    - first option is to modify Sovity Extension: adjust extension and replace db migrations with migrations from https://github.com/eclipse-tractusx/tractusx-edc/tree/main/edc-extensions/migrations/control-plane-migration (not the best option due to the added difficulty of  maintaining the custom extension)
-    - second option is to adopt TractusX extensions for persistence using setup 2: https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs (more preferable)
 - Add extension for dashboard (not investigated yet)
 - Same as declared in https://github.com/jhalasinski/connector-local/tree/main/src
