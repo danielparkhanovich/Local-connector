@@ -80,6 +80,32 @@ services:
     volumes:
       - 'postgresql-consumer:/bitnami/postgresql'
 
+  consumer-data-dashboard:
+    build: 
+      context: ../src/data-dashboard
+      dockerfile: Dockerfile
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    depends_on:
+      - consumer-connector
+    ports:
+      - "28080:80"
+    volumes:
+      - ../src/data-dashboard/deployment/conf/consumer.nginx.conf:/etc/nginx/nginx.conf
+      - ../src/data-dashboard/deployment/conf/consumer.config.json:/usr/share/nginx/html/assets/config/app.config.json
+
+  provider-data-dashboard:
+    build: 
+      context: ../src/data-dashboard
+      dockerfile: Dockerfile
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    depends_on:
+      - provider-connector
+    ports:
+      - "18080:80"
+    volumes:
+      - ../src/data-dashboard/deployment/conf/provider.nginx.conf:/etc/nginx/nginx.conf
+      - ../src/data-dashboard/deployment/conf/provider.config.json:/usr/share/nginx/html/assets/config/app.config.json
+
 volumes:
   postgresql-provider:
     driver: local

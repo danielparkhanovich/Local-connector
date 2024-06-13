@@ -45,14 +45,8 @@ dependencies {
 
     implementation(libs.edc.api.observability)
 
-    //extension to make assests, policies etc. persistent. 
-    //api(project(":extensions:postgres-flyway"))
-    
     // extention for enhancing data dashboard locally
-    //api(project(":extensions:data-dashboard-local"))
-
-    // DAPS - we have no DAPS now
-    // implementation(libs.edc.oauth2)
+    api(project(":extensions:data-dashboard-local"))
 
     // register SQL
     implementation(libs.edc.core.spi)

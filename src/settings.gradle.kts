@@ -30,4 +30,4 @@ dependencyResolutionManagement {
 
 include("launcher")
 //include("extensions:postgres-flyway")
-//include("extensions:data-dashboard-local")
+include("extensions:data-dashboard-local")
