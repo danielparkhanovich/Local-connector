@@ -1,8 +1,6 @@
 {
-  "apiKey": "ApiKeyDefaultValue",
-  "managementApiUrl": "http://localhost:28080/management",
-  "catalogUrl": "http://localhost:28080/management",
-  "storageAccount": "company2assets",
-  "storageExplorerLinkTemplate": "storageexplorer://v=1",
+  "apiKey": "fifi-info-zaneta",
+  "managementApiUrl": "http://localhost:19193/management",
+  "catalogUrl": "http://localhost:19193/management",
   "theme": "theme-2"
 }

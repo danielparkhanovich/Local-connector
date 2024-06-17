@@ -93,15 +93,17 @@ export class ContractViewerComponent implements OnInit {
 
       const iniateTransfer : TransferProcessInput = {
         assetId: contractOffer.assetId,
-        connectorAddress: contractOffer.originator,
+        counterPartyAddress: contractOffer.originator,
 
-        connectorId: "consumer", //doesn't matter, but cannot be null
+        //connectorId: "consumer", //doesn't matter, but cannot be null
         contractId: contract.id,
         dataDestination: {
           "type": storageTypeId,
           account: this.homeConnectorStorageAccount, // CAUTION: hardcoded value for AzureBlob
           // container: omitted, so it will be auto-assigned by the EDC runtime
-        }
+        },
+
+        transferType: "HttpData-PULL",
       };
 
       return iniateTransfer;
