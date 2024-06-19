@@ -106,6 +106,17 @@ services:
       - ../src/data-dashboard/deployment/conf/provider.nginx.conf:/etc/nginx/nginx.conf
       - ../src/data-dashboard/deployment/conf/provider.config.json:/usr/share/nginx/html/assets/config/app.config.json
 
+  consumer-backend:
+    image: consumer-backend-py
+    build:
+      context: ../src/consumer-backend-py
+    ports:
+      - "4000:4000"
+    depends_on:
+      - consumer-connector
+    volumes:
+      - ../src/consumer-backend-data/:/app/data  
+
 volumes:
   postgresql-provider:
     driver: local

@@ -66,7 +66,7 @@ import { EdcConnectorClient } from "@think-it-labs/edc-connector-client";
     },
     {
       provide: 'STORAGE_TYPES',
-      useFactory: () => [{id: "AzureStorage", name: "AzureStorage"}, {id: "AmazonS3", name: "AmazonS3"}],
+      useFactory: () => [{id: "HttpProxy", name: "LocalStorage"}, {id: "HttpProxy", name: "HttpProxy"}],
     },
     {
       provide: HTTP_INTERCEPTORS, multi: true, useFactory: () => {
