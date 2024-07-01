@@ -12,11 +12,11 @@ Based on
 
 ## Build
 1. `cd ./src`
-2. `./gradlew clean build`
+2. `./gradlew launcher:build`
 
 ## How to run
 1. `cd ./compose`
-2. `docker compose up --build`
+2. `docker compose -f base.yaml up --build`
 
 ## Next steps
 - Same as declared in https://github.com/jhalasinski/connector-local/tree/main/src
