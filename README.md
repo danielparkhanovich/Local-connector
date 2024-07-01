@@ -7,8 +7,8 @@ Based on
 ## Changes
 - Project updated to EDC v. 0.7.0
 - Jupyter notebook updated accordingly to interact with EDC v. 0.7.0
-- Removed postgres-flyway Extension (incompatible with EDC starting from EDC v. 0.5.0)
-- Removed data-dashboard-local Extension (incompatible with EDC v.0.7.0 starting from EDC v. 0.?.?)
+- Replaced postgres-flyway Extension (incompatible with EDC starting from EDC v. 0.5.0) with migrations from TractusX
+- Updated data-dashboard-local Extension, updating think-it-labs/edc-connector-client package to v. 0.5.0 & adding manual changes to the project
 
 ## Build
 1. `cd ./src`
@@ -19,5 +19,4 @@ Based on
 2. `docker compose up --build`
 
 ## Next steps
-- Add extension for dashboard (not investigated yet)
 - Same as declared in https://github.com/jhalasinski/connector-local/tree/main/src
